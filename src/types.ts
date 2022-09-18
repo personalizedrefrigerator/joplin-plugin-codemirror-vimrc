@@ -1,17 +1,17 @@
 
 interface GetVimrcMessage {
-    kind: 'get-vimrc';
+	kind: 'get-vimrc';
 }
 
 interface UpdateVimrcMessage {
-    kind: 'set-vimrc';
-    content: string;
+	kind: 'set-vimrc';
+	content: string;
 }
 
 type VimrcDialogMessage = GetVimrcMessage;
 
 interface SetContentScriptMessageCallback {
-    kind: 'set-callback',
+	kind: 'set-callback',
 }
 
 type ToContentScriptMessage = UpdateVimrcMessage;

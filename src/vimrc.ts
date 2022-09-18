@@ -5,8 +5,8 @@ import type FsExtra = require('fs-extra');
 const fs = joplin.require('fs-extra') as typeof FsExtra;
 
 const getVimrcPath = async () => {
-    const dataDir = await joplin.plugins.dataDir();
-    return path.join(dataDir, '.vimrc');
+	const dataDir = await joplin.plugins.dataDir();
+	return path.join(dataDir, '.vimrc');
 };
 
 const defaultVimrcContent = `
@@ -24,15 +24,15 @@ const defaultVimrcContent = `
 `;
 
 export const getVimrcContent = async (): Promise<string> => {
-    const vimrcPath = await getVimrcPath();
-    if (!(await fs.pathExists(vimrcPath))) {
-        return defaultVimrcContent;
-    }
+	const vimrcPath = await getVimrcPath();
+	if (!(await fs.pathExists(vimrcPath))) {
+		return defaultVimrcContent;
+	}
 
-    return await fs.readFile(vimrcPath, 'utf-8');
+	return await fs.readFile(vimrcPath, 'utf-8');
 };
 
 export const setVimrcContent = async (content: string) => {
-    const vimrcPath = await getVimrcPath();
-    await fs.writeFile(vimrcPath, content);
+	const vimrcPath = await getVimrcPath();
+	await fs.writeFile(vimrcPath, content);
 };
