@@ -1,0 +1,6 @@
+{
+	"extraScripts": [
+		"contentScripts/codeMirrorPlugin.ts",
+		"dialog/editVimrc.ts"
+	]
+}

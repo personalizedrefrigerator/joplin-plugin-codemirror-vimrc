@@ -1,0 +1,8 @@
+
+textarea {
+    min-width: 100px;
+    min-height: 100px;
+
+    width: max(100%, 100vw);
+    height: max(100%, 100vh);
+}
