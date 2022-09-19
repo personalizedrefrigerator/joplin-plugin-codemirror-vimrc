@@ -30,7 +30,7 @@ const updateVimrc = (vimrc: string, vimControl: VimControl) => {
 		let line = origLine;
 
 		line = line.replace(/^\s+/, '');
-		line = line.replace(/\s*["][^"]*$/, '');
+		line = line.replace(/^\s*["][^"]*$/, '');
 
 		if (line === '') {
 			continue;
