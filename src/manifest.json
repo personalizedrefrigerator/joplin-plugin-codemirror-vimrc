@@ -9,5 +9,5 @@
 	"homepage_url": "https://github.com/personalizedrefrigerator/joplin-plugin-codemirror-vimrc",
 	"repository_url": "git@github.com:personalizedrefrigerator/joplin-plugin-codemirror-vimrc.git",
 	"keywords": [ "Editor" ],
-	"categories": []
+	"categories": [ "editor" ]
 }

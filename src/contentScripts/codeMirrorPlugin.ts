@@ -31,6 +31,7 @@ const updateVimrc = (vimrc: string, vimControl: VimControl) => {
 
 		line = line.replace(/^\s+/, '');
 		line = line.replace(/^\s*["][^"]*$/, '');
+		line = line.replace(/[\r]$/, '');
 
 		if (line === '') {
 			continue;
@@ -41,6 +42,7 @@ const updateVimrc = (vimrc: string, vimControl: VimControl) => {
 		const commandMatch = commandExp.exec(line) ?? unmapExp.exec(line);
 		if (!commandMatch) {
 			console.error('line: %s. Run window.testCommand(line) to try matching a command.', line);
+			window['cmd'] = line;
 			window['testCommand'] = (command: string) => (commandExp.exec(command) ?? unmapExp.exec(command));
 			throw new Error(`Unknown command on line ${lineNo}: ${origLine}`);
 		}
