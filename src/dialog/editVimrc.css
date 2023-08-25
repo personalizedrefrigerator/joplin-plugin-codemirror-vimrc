@@ -5,4 +5,15 @@ textarea {
 
 	width: 100vw;
 	height: 100vh;
+
+	box-sizing: border-box;
+	margin: 0;
+
+	color: var(--joplin-color);
+	background: var(--joplin-background-color);
+}
+
+body, :root {
+	margin: 0;
+	padding: 0;
 }

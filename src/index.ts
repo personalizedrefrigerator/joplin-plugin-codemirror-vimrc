@@ -8,7 +8,7 @@ const pluginPrefix = 'io.github.personalizedrefrigerator.plugin-vimrc';
 const showVimrcEditDialog = async (dialogId: string): Promise<string|null> => {
 	await dialogs.setHtml(dialogId, `
 		<form name='form'>
-			<textarea name='result' id='content'></textarea>
+			<textarea name='result' id='content' spellcheck='false'></textarea>
 		</form>
 	`);
 	await dialogs.addScript(dialogId, './dialog/editVimrc.js');
