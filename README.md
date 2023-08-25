@@ -4,7 +4,7 @@ Pressing `ctrl+Shift+P` and typing `vimrc` allows editing a very-limited `.vimrc
 
 See the relevant post on the [Joplin forum](https://discourse.joplinapp.org/t/vim-in-multiple-keyboard-layout/27412/6?u=personalizedrefriger).
 
-This is a sample `.vimrc`:
+This is a sample `vimrc`-like configuration file:
 ```vim
 " A .vimrc-like file. At present, very little is supported.
 " You can use the commands:
