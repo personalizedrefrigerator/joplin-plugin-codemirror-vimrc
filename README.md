@@ -15,7 +15,7 @@ This is a sample `vimrc`-like configuration file:
 " insert-mode mappings seem to be unable to insert text.
 "
 " Examples:
-" Allow copying/pasting with ctrl+c and ctrl+v when in insert mode.
+" Allow copying/pasting with ctrl+c/ctrl+v when in insert mode.
 unmap <C-c>
 unmap <C-v>
 "
