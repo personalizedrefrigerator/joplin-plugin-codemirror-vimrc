@@ -7,7 +7,7 @@
 	"description": "Configure CodeMirror‘s ViM emulation with a very-limited, vimrc-like file.",
 	"author": "Henry Heino",
 	"homepage_url": "https://github.com/personalizedrefrigerator/joplin-plugin-codemirror-vimrc",
-	"repository_url": "git@github.com:personalizedrefrigerator/joplin-plugin-codemirror-vimrc.git",
+	"repository_url": "https://github.com/personalizedrefrigerator/joplin-plugin-codemirror-vimrc.git",
 	"keywords": [ "Editor" ],
 	"categories": [ "editor" ],
 	"screenshots": [
