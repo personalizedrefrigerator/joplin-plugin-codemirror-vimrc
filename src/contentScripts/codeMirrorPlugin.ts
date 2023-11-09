@@ -98,17 +98,21 @@ const setupOnMessageCallback = async (onMessage: OnMessageCallback, postMessage:
 export default (context: { contentScriptId: string, postMessage: PostMessageCallback }) => {
 	return {
 		plugin: (cm: CodeMirror.Editor) => {
-			(async () => {
+			const updateVimrcOrPostError = (vimrc: string) => {
 				try {
-					const vimrc = await context.postMessage({
-						kind: 'get-vimrc',
-					}) as string;
-
 					updateVimrc(vimrc, (cm as any).Vim);
 				} catch (error) {
 					console.error(error);
 					context.postMessage({ kind: 'log-error', errorMessage: error });
 				}
+			};
+
+			(async () => {
+				const vimrc = await context.postMessage({
+					kind: 'get-vimrc',
+				}) as string;
+
+				updateVimrcOrPostError(vimrc);
 			})();
 
 			setupOnMessageCallback(message => {
@@ -116,7 +120,7 @@ export default (context: { contentScriptId: string, postMessage: PostMessageCall
 					throw new Error('Invalid message!');
 				}
 
-				updateVimrc(message.content, (cm as any).Vim);
+				updateVimrcOrPostError(message.content);
 			}, context.postMessage);
 		}
 	};

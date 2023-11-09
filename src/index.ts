@@ -40,16 +40,31 @@ joplin.plugins.register({
 		const dialog = await dialogs.create(`${pluginPrefix}jsDrawDialog`);
 		const contentScriptId = `${pluginPrefix}.content-script`;
 		let messageContentScriptCallback: MessageContentScriptCallback|null = null;
-		let lastErrorDialogTimestamp = 0;
+
+		// In the CM5 editor, the plugin can be reloaded many times in just a few seconds.
+		// Defer showing error messages (and show all errors in a single dialog).
+		let showErrorTimeoutId: ReturnType<typeof setTimeout>|null = null;
+		let queuedErrorMessages: string[] = [];
+		const showError = (message: string) => {
+			queuedErrorMessages.push(message);
+
+			if (showErrorTimeoutId === null) {
+				showErrorTimeoutId = setTimeout(() => {
+					showErrorTimeoutId = null;
+
+					const errorText = queuedErrorMessages.map(message => ` ${message}`).join('\n');
+					alert('Error applying vimrc:\n' + errorText);
+					queuedErrorMessages = [];
+				}, 400);
+			}
+		};
 
 		await joplin.contentScripts.onMessage(contentScriptId, (message: FromContentScriptMessage) => {
 			if (message.kind === 'get-vimrc') {
 				return getVimrcContent();
 			} else if (message.kind === 'log-error') {
 				// If an error message wasn't shown recently,
-				if (lastErrorDialogTimestamp + 1000 < Date.now()) {
-					alert('Error applying vimrc: ' + message.errorMessage);
-				}
+				showError(message.errorMessage);
 				return;
 			} else if (message.kind === 'set-callback') {
 				return new Promise(resolve => {
