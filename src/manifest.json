@@ -14,6 +14,10 @@
 		{
 			"src": "screenshots/dialog-edit-vimrc.png",
 			"label": "Shows the \"Edit vimrc\" dialog open. Commands are the same as shown in the readme: unmap <C-c>, unmap <C-v> to allow copy/paste with ctrl+c, imap jk <Esc> to make Escape exit insert mode"
+		},
+		{
+			"src": "https://github.com/personalizedrefrigerator/joplin-plugin-codemirror-vimrc/blob/main/screenshots/screenshot-opening-dialog.png",
+			"label": "Screenshot: Joplin's go-to-anything dialog box displays a search query of :vimrc with one command result, Edit .vimrc."
 		}
 	]
 }
