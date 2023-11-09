@@ -15,8 +15,6 @@ interface VimControl {
 }
 
 const updateVimrc = (vimrc: string, vimControl: VimControl) => {
-	console.log('Updating .vimrc to', vimrc);
-
 	const allModes: VimMode[] = ['insert', 'visual', 'normal'];
 	for (const mode of allModes) {
 		// Reset all settings
@@ -78,7 +76,7 @@ const updateVimrc = (vimrc: string, vimControl: VimControl) => {
 					vimControl.noremap(mapFrom, mapTo, mode);
 					break;
 			}
-			console.log('Processing: cmd(%s), from(%s), to(%s), mode(%s). %s: %s', command, mapFrom, mapTo, mode, 'from line', line);
+			console.log('vimrc plugin: Processing: cmd(%s), from(%s), to(%s), mode(%s). %s: %s', command, mapFrom, mapTo, mode, 'from line', line);
 		}
 	}
 };
