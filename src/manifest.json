@@ -9,5 +9,11 @@
 	"homepage_url": "https://github.com/personalizedrefrigerator/joplin-plugin-codemirror-vimrc",
 	"repository_url": "git@github.com:personalizedrefrigerator/joplin-plugin-codemirror-vimrc.git",
 	"keywords": [ "Editor" ],
-	"categories": [ "editor" ]
+	"categories": [ "editor" ],
+	"screenshots": [
+		{
+			"src": "screenshots/dialog-edit-vimrc.png",
+			"label": "Shows the \"Edit vimrc\" dialog open. Commands are the same as shown in the readme: unmap <C-c>, unmap <C-v> to allow copy/paste with ctrl+c, imap jk <Esc> to make Escape exit insert mode"
+		}
+	]
 }
