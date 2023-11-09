@@ -1,3 +1,7 @@
+# 1.0.5
+- Fix many alert dialogs shown for a single error.
+- Fix alert dialogs sometimes not shown for an error in the CodeMirror6-based beta editor.
+
 # 1.0.4
 - Disables spellcheck in the `vimrc` dialog
 - Updates the dialog to use colors from Joplin's color theme
