@@ -8,6 +8,11 @@ interface UpdateVimrcMessage {
 	content: string;
 }
 
+interface LogErrorMessage {
+	kind: 'log-error';
+	errorMessage: string;
+}
+
 type VimrcDialogMessage = GetVimrcMessage;
 
 interface SetContentScriptMessageCallback {
@@ -15,5 +20,5 @@ interface SetContentScriptMessageCallback {
 }
 
 type ToContentScriptMessage = UpdateVimrcMessage;
-type FromContentScriptMessage = GetVimrcMessage | SetContentScriptMessageCallback;
+type FromContentScriptMessage = GetVimrcMessage | SetContentScriptMessageCallback | LogErrorMessage;
 type MessageContentScriptCallback = (message: ToContentScriptMessage)=>void;

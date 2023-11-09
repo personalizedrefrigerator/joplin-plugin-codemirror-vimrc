@@ -101,15 +101,15 @@ export default (context: { contentScriptId: string, postMessage: PostMessageCall
 	return {
 		plugin: (cm: CodeMirror.Editor) => {
 			(async () => {
-				const vimrc = await context.postMessage({
-					kind: 'get-vimrc',
-				}) as string;
-
 				try {
+					const vimrc = await context.postMessage({
+						kind: 'get-vimrc',
+					}) as string;
+
 					updateVimrc(vimrc, (cm as any).Vim);
-				} catch(e) {
-					console.error(e);
-					alert(e);
+				} catch (error) {
+					console.error(error);
+					context.postMessage({ kind: 'log-error', errorMessage: error });
 				}
 			})();
 

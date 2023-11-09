@@ -40,14 +40,25 @@ joplin.plugins.register({
 		const dialog = await dialogs.create(`${pluginPrefix}jsDrawDialog`);
 		const contentScriptId = `${pluginPrefix}.content-script`;
 		let messageContentScriptCallback: MessageContentScriptCallback|null = null;
+		let lastErrorDialogTimestamp = 0;
+
 		await joplin.contentScripts.onMessage(contentScriptId, (message: FromContentScriptMessage) => {
 			if (message.kind === 'get-vimrc') {
 				return getVimrcContent();
+			} else if (message.kind === 'log-error') {
+				// If an error message wasn't shown recently,
+				if (lastErrorDialogTimestamp + 1000 < Date.now()) {
+					alert('Error applying vimrc: ' + message.errorMessage);
+				}
+				return;
+			} else if (message.kind === 'set-callback') {
+				return new Promise(resolve => {
+					messageContentScriptCallback = resolve;
+				});
+			} else {
+				const exhaustivenessCheck: never = message;
+				return exhaustivenessCheck;
 			}
-
-			return new Promise(resolve => {
-				messageContentScriptCallback = resolve;
-			});
 		});
 		await joplin.contentScripts.register(
 			ContentScriptType.CodeMirrorPlugin,
