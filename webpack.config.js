@@ -97,18 +97,14 @@ function validateScreenshots(screenshots) {
 		if (!screenshot.src) throw new Error('You must specify a src for each screenshot');
 
 		// Avoid attempting to download and verify URL screenshots.
-		if (screenshot.src.startsWith('https://')) continue;
+		if (screenshot.src.startsWith('https://') || screenshot.src.startsWith('http://')) {
+			continue;
+		}
 
 		const screenshotType = screenshot.src.split('.').pop();
 		if (!allPossibleScreenshotsType.includes(screenshotType)) throw new Error(`${screenshotType} is not a valid screenshot type. Valid types are: \n${allPossibleScreenshotsType}\n`);
 
-		let screenshotPath;
-		if (screenshot.src.startsWith('./') || screenshot.src.startsWith('../')) {
-			// If screenshot srcs start with ./ or ../, they're relative to the src directory.
-			screenshotPath = path.resolve(srcDir, screenshot.src);
-		} else {
-			screenshotPath = path.resolve(rootDir, screenshot.src);
-		}
+		const screenshotPath = path.resolve(rootDir, screenshot.src);
 
 		// Max file size is 1MB
 		const fileMaxSize = 1024;
