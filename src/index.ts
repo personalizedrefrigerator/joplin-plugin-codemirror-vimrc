@@ -49,13 +49,13 @@ joplin.plugins.register({
 			queuedErrorMessages.push(message);
 
 			if (showErrorTimeoutId === null) {
-				showErrorTimeoutId = setTimeout(() => {
+				showErrorTimeoutId = setTimeout(async () => {
 					showErrorTimeoutId = null;
 
 					const errorText = queuedErrorMessages.map(message => ` ${message}`).join('\n');
-					alert('Error applying vimrc:\n' + errorText);
+					await joplin.views.dialogs.showMessageBox('Error applying vimrc:\n' + errorText);
 					queuedErrorMessages = [];
-				}, 400);
+				}, 500);
 			}
 		};
 
